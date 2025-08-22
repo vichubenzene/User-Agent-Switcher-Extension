@@ -4,10 +4,10 @@
   "version": "1.2",
   "description": "Switch between different mobile browsers and User-Agents",
   "icons": {
-    "16": "icon16.png",
-    "32": "icon32.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
   },
   "permissions": [
     "declarativeNetRequest",
@@ -18,8 +18,8 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icon16.png",
-      "32": "icon32.png"
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
     }
   },
   "declarative_net_request": {
@@ -27,67 +27,67 @@
       {
         "id": "android-chrome-ua",
         "enabled": false,
-        "path": "rules_android_chrome.json"
+        "path": "rules/rules_android_chrome.json"
       },
       {
         "id": "android-firefox-ua",
         "enabled": false,
-        "path": "rules_android_firefox.json"
+        "path": "rules/rules_android_firefox.json"
       },
       {
         "id": "iphone-chrome-ua",
         "enabled": false,
-        "path": "rules_iphone_chrome.json"
+        "path": "rules/rules_iphone_chrome.json"
       },
       {
         "id": "iphone-firefox-ua",
         "enabled": false,
-        "path": "rules_iphone_firefox.json"
+        "path": "rules/rules_iphone_firefox.json"
       },
       {
         "id": "iphone-safari-ua",
         "enabled": false,
-        "path": "rules_iphone_safari.json"
+        "path": "rules/rules_iphone_safari.json"
       },
       {
         "id": "linux-chrome-ua",
         "enabled": false,
-        "path": "rules_linux_chrome.json"
+        "path": "rules/rules_linux_chrome.json"
       },
       {
         "id": "linux-firefox-ua",
         "enabled": false,
-        "path": "rules_linux_firefox.json"
+        "path": "rules/rules_linux_firefox.json"
       },
       {
         "id": "mac-chrome-ua",
         "enabled": false,
-        "path": "rules_mac_chrome.json"
+        "path": "rules/rules_mac_chrome.json"
       },
       {
         "id": "mac-firefox-ua",
         "enabled": false,
-        "path": "rules_mac_firefox.json"
+        "path": "rules/rules_mac_firefox.json"
       },
       {
         "id": "mac-safari-ua",
         "enabled": false,
-        "path": "rules_mac_safari.json"
+        "path": "rules/rules_mac_safari.json"
       },
       {
         "id": "windows-chrome-ua",
         "enabled": false,
-        "path": "rules_windows_chrome.json"
+        "path": "rules/rules_windows_chrome.json"
       },
       {
         "id": "windows-firefox-ua",
         "enabled": false,
-        "path": "rules_windows_firefox.json"
+        "path": "rules/rules_windows_firefox.json"
       },
       {
         "id": "windows-edge-ua",
         "enabled": false,
-        "path": "rules_windows_edge.json"
+        "path": "rules/rules_windows_edge.json"
       }
     ]
   }
