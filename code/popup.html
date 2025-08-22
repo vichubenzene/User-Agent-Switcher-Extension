@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UA Switcher</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+      color: #333;
+      width: 300px;
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .content-area {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      padding-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .platform-section {
+      margin-bottom: 8px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .platform-header {
+      background: #f8f9fa;
+      padding: 8px 12px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e0e0e0;
+      transition: background 0.2s ease;
+    }
+
+    .platform-header:hover {
+      background: #e9ecef;
+    }
+
+    .platform-header.active {
+      background: #1976d2;
+      color: white;
+    }
+
+    .platform-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .platform-arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .platform-header.active .platform-arrow {
+      transform: rotate(180deg);
+    }
+
+    .platform-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .platform-content.expanded {
+      max-height: 200px;
+    }
+
+    .platform-content.expanded-auto {
+      max-height: 200px;
+    }
+
+    .radio-group {
+      padding: 6px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      background: #fff;
+      border-radius: 6px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: background 0.2s ease;
+      font-size: 13px;
+    }
+
+    label:hover {
+      background: #e9f0fb;
+    }
+
+    label:has(input:checked) {
+      background: #e3f2fd;
+      border: 1px solid #1976d2;
+    }
+
+    /* Fallback for browsers that don't support :has() */
+    label.selected {
+      background: #e3f2fd;
+      border: 1px solid #1976d2;
+    }
+
+    input[type="radio"] {
+      accent-color: #1976d2;
+    }
+
+    .custom-section {
+      background: #fff3e0;
+      border: 1px solid #ffcc80;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 16px;
+    }
+
+    .custom-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      margin-top: 8px;
+      font-size: 13px;
+      box-sizing: border-box;
+    }
+
+    .custom-button {
+      background: #ff9800;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .custom-button:hover {
+      background: #f57c00;
+    }
+
+    #status {
+      margin: 0;
+      font-size: 13px;
+      color: #555;
+      padding: 12px 16px;
+      background: #fff;
+      border-radius: 0;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="content-area">
+    <h2>Choose a User-Agent</h2>
+    
+    <div class="radio-group" style="padding-left: 0px;">
+      <label><input type="radio" name="ua" value="default"> Default / Revert</label>
+    </div>
+
+    <div class="platform-section">
+      <div class="platform-header" data-platform="android">
+        <span class="platform-title">Android</span>
+        <span class="platform-arrow">▼</span>
+      </div>
+      <div class="platform-content" data-platform="android">
+        <div class="radio-group">
+          <label><input type="radio" name="ua" value="android-chrome"> Chrome</label>
+          <label><input type="radio" name="ua" value="android-firefox"> Firefox</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <div class="platform-header" data-platform="iphone">
+        <span class="platform-title">iPhone</span>
+        <span class="platform-arrow">▼</span>
+      </div>
+      <div class="platform-content" data-platform="iphone">
+        <div class="radio-group">
+          <label><input type="radio" name="ua" value="iphone-chrome"> Chrome</label>
+          <label><input type="radio" name="ua" value="iphone-firefox"> Firefox</label>
+          <label><input type="radio" name="ua" value="iphone-safari"> Safari</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <div class="platform-header" data-platform="linux">
+        <span class="platform-title">Linux</span>
+        <span class="platform-arrow">▼</span>
+      </div>
+      <div class="platform-content" data-platform="linux">
+        <div class="radio-group">
+          <label><input type="radio" name="ua" value="linux-chrome"> Chrome</label>
+          <label><input type="radio" name="ua" value="linux-firefox"> Firefox</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <div class="platform-header" data-platform="mac">
+        <span class="platform-title">macOS</span>
+        <span class="platform-arrow">▼</span>
+      </div>
+      <div class="platform-content" data-platform="mac">
+        <div class="radio-group">
+          <label><input type="radio" name="ua" value="mac-chrome"> Chrome</label>
+          <label><input type="radio" name="ua" value="mac-firefox"> Firefox</label>
+          <label><input type="radio" name="ua" value="mac-safari"> Safari</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="platform-section">
+      <div class="platform-header" data-platform="windows">
+        <span class="platform-title">Windows</span>
+        <span class="platform-arrow">▼</span>
+      </div>
+      <div class="platform-content" data-platform="windows">
+        <div class="radio-group">
+          <label><input type="radio" name="ua" value="windows-chrome"> Chrome</label>
+          <label><input type="radio" name="ua" value="windows-firefox"> Firefox</label>
+          <label><input type="radio" name="ua" value="windows-edge"> Edge</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="custom-section">
+      <div class="platform-title">Custom User-Agent</div>
+      <input type="text" class="custom-input" id="customUA" placeholder="Enter custom User-Agent string...">
+      <button class="custom-button" id="applyCustom">Apply</button>
+    </div>
+  </div>
+
+  <div id="status">No selection yet.</div>
+
+  <script src="popup.js"></script>
+  <script>
+    // Auto-expand accordion sections when radio buttons are selected
+    document.querySelectorAll('input[name="ua"]').forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        const choice = e.target.value;
+        if (choice === 'default') return;
+        
+        const [platform] = choice.split('-');
+        const platformHeader = document.querySelector(`[data-platform="${platform}"]`);
+        const platformContent = platformHeader.nextElementSibling;
+        
+        // Close all other sections
+        document.querySelectorAll('.platform-content').forEach(content => {
+          content.classList.remove('expanded', 'expanded-auto');
+        });
+        document.querySelectorAll('.platform-header').forEach(h => {
+          h.classList.remove('active');
+        });
+        
+        // Expand the selected platform section
+        platformContent.classList.add('expanded-auto');
+        platformHeader.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
